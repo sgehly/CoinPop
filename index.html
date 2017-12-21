@@ -20,8 +20,14 @@
 		width:100% !important;
 		flex:2 !important;
 	}
+	#twitter_box iframe{
+		height:100% !important;
+	}
 	a:hover{
 		cursor:pointer;
+	}
+	[data-box] *{
+		pointer-events: none;
 	}
 	.header{
 		font-weight:300;
@@ -74,6 +80,14 @@
 		border-radius:6px;
 		overflow:hidden;
 		flex-direction: column;
+		box-sizing:border-box;
+	}
+	.box:hover{
+		cursor:pointer;
+		opacity:0.8;
+	}
+	.box,.box:hover{
+		transition:.25s all;
 	}
 	.bg-light{
 		background:#202733;
@@ -121,6 +135,9 @@
 	.hidden{
 		opacity:0;
 	}
+	.selectedBox{
+		box-shadow:0px 0px 5px rgba(60, 220, 173, 0.5);
+	}
 </style>
 </head>
 <body>
@@ -132,7 +149,7 @@
 			</div>
 			<div class="flex flex-20" style="flex:10%;padding:5px;">
 				<div class="pad-all-small flex">
-					<div class="box flex bg-light block">
+					<div class="box flex bg-light block" data-box="BTC">
 						<h3 class="header bg-dark">
 							Bitcoin
 						</h3>
@@ -144,7 +161,7 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box flex bg-light block">
+					<div class="box flex bg-light block" data-box="ETH">
 						<h3 class="header bg-dark">
 							Ethereum
 						</h3>
@@ -156,7 +173,7 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box flex bg-light block">
+					<div class="box flex bg-light block" data-box="LTC">
 						<h3 class="header bg-dark">
 							Litecoin
 						</h3>
@@ -168,7 +185,7 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box flex bg-light block">
+					<div class="box flex bg-light block" data-box="XRP">
 						<h3 class="header bg-dark">
 							Ripple
 						</h3>
@@ -180,7 +197,7 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box flex bg-light block">
+					<div class="box flex bg-light block" data-box="BCH">
 						<h3 class="header bg-dark">
 							Bitcoin Cash
 						</h3>
@@ -196,17 +213,17 @@
 
 			<div class="flex" style="flex:85%;padding-left:5px;padding-right:5px;">
 				<div class="flex pad-all-small flex-vertical" style="flex:60%;">
-					<div class="box bg-light block" style="flex:60%;position:relative;">
-						<canvas id="graph" class="hidden" style="margin:-10px; position:absolute;top:0;left:0;bottom:0;right:0;height:auto !important;"></canvas>
+					<div class="box bg-light block pad-all-large" style="flex:50%;position:relative;">
+						<canvas id="graph" class="hidden" style="position:absolute;left:0;right:0;height:auto !important;"></canvas>
 					</div>
-					<div class="flex flex-horizontal" style="flex:40%">
+					<div class="flex flex-horizontal" style="flex:50%">
 						<div class="pad-all-custom flex" style="flex:60%;">
 							<div class="box flex bg-light block">
 								<h3 class="header bg-dark flex deselected">
-									News Feed
+									Discussion
 								</h3>
 								<div style="flex:2;overflow-y:scroll;">
-									<a class="twitter-timeline" data-theme="dark" href="https://twitter.com/gocoinpop/lists/coin-news" data-id="1381293" data-chrome="nofooter noheader transparent">A Twitter List by gocoinpop</a>
+									<div id="disqus_thread" class="pad-all-large flex flex-fillRest"></div>
 								</div>
 							</div>
 						</div>
@@ -224,15 +241,11 @@
 				<div class="flex pad-all-small" style="flex:40%">
 					<div class="box bg-light block">
 						<h3 class="header bg-dark">
-							<a class="" id="twitter">Twitter Feed</a>
-							&nbsp;&nbsp;
-							<a class="deselected" id="discuss">Discussion</a>
+							<a class="deselected" id="twitter">Twitter Feed</a>
 						</h3>
-						
-						<div id="disqus_thread" style="display:none" class="pad-all-large flex flex-fillRest"></div>
 
-						<div id="twitter_box">
-							<a class="twitter-timeline block" href="https://twitter.com/search?q=cryptocurrency%20OR%20bitcoin%20OR%20ethereum%20OR%20litecoin%20OR%20ripple&chrome=transparent noheader nofooter" data-widget-id="943248664046243840">Tweets about cryptocurrency OR bitcoin OR ethereum OR litecoin OR ripple</a>
+						<div id="twitter_box" class="flex">
+							<a class="twitter-timeline block flex-fillRest" href="https://twitter.com/gocoinpop/lists/coin-news&chrome=transparent noheader nofooter" data-chrome="nofooter noheader transparent" data-widget-id="943248664046243840"></a>
 						</div>
 
 						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -265,80 +278,31 @@
 		el('graph').classList.add('animated');
 		el('graph').classList.add('fadeIn');
 	},1500)
-	//https://davidwalsh.name/convert-xml-json
-	function xmlToJson(xml) {
-	    
-	    // Create the return object
-	    var obj = {};
-
-	    if (xml.nodeType == 1) { // element
-	        // do attributes
-	        if (xml.attributes.length > 0) {
-	        obj["@attributes"] = {};
-	            for (var j = 0; j < xml.attributes.length; j++) {
-	                var attribute = xml.attributes.item(j);
-	                obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-	            }
-	        }
-	    } else if (xml.nodeType == 3) { // text
-	        obj = xml.nodeValue;
-	    }
-
-	    // do children
-	    if (xml.hasChildNodes()) {
-	        for(var i = 0; i < xml.childNodes.length; i++) {
-	            var item = xml.childNodes.item(i);
-	            var nodeName = item.nodeName;
-	            if (typeof(obj[nodeName]) == "undefined") {
-	                obj[nodeName] = xmlToJson(item);
-	            } else {
-	                if (typeof(obj[nodeName].push) == "undefined") {
-	                    var old = obj[nodeName];
-	                    obj[nodeName] = [];
-	                    obj[nodeName].push(old);
-	                }
-	                obj[nodeName].push(xmlToJson(item));
-	            }
-	        }
-	    }
-	    return obj;
-	};
-
-	function getNews(){
-		/*apiRequest("http://www.altcointoday.com/feed/", true)
-		.then(function(response){
-			var json = xmlToJson(response);
-			console.log(json);
-		})*/
-	}
-
-	getNews();
-	setInterval(getNews, 30*60*1000)
-
-
-	var currentPrice = {}
-	var currentTicker = 'BTC';
-
-	var tickers = [
-		{
+	var currentTicker;
+	var tickers = {
+		'BTC': {
 			ticker: 'BTC',
+			buffer: []
 		},
-		{
+		'ETH': {
 			ticker: 'ETH',
+			buffer: []
 		},
-		{
+		'LTC': {
 			ticker: 'LTC',
+			buffer: []
 		},
-		{
+		'XRP': {
 			ticker: 'XRP',
-			channel: 'XRPUSDT'
+			channel: 'XRPUSDT',
+			digits: 4,
+			buffer: []
 		},
-		{
+		'BCH': {
 			ticker: 'BCH',
+			buffer: []
 		}
-	]
-
-	var buf = {};
+	}
 
 	function apiRequest(url, raw){
 		var request = new XMLHttpRequest();
@@ -366,18 +330,19 @@
 
 	}
 
-	for(var i=0;i<tickers.length;i++){
-		buf[tickers[i].ticker] = [];
+	for(var ticker in tickers){
+		tickers[ticker].buffer = [];
+		tickers[ticker].canReceive = true;
 	}
 
 	var connection;
 	
 	function initializeSocket(){
-		for(var i=0;i<tickers.length;i++){
+		for(var ticker in tickers){
 			connection.send(JSON.stringify({
 			  "method": "subscribeTicker",
 			  "params": {
-			    "symbol": (tickers[i].channel || tickers[i].ticker+"USD")
+			    "symbol": (tickers[ticker].channel || tickers[ticker].ticker+"USD")
 			  },
 			  "id": (Math.random()%1000000)+10000
 			}))
@@ -385,14 +350,8 @@
 
 	}
 
-	var canReceive = true;
-	setInterval(function(){
-		canReceive = true;
-	},500)
 	function receiveMessage(data){
-		if(!canReceive){
-			return;
-		}
+
 		var data = JSON.parse(data.data);
 
 		if(data.channel == "ticker"){
@@ -402,13 +361,27 @@
 			var price = data.data.ask;
 			var date = moment(data.data.timestamp);
 
+			if(!tickers[from].canReceive){
+				return;
+			}
+
+			tickers[from].canReceive = false;
+			setTimeout(function(){
+				tickers[from].canReceive = true;
+			},2000)
+
 			var changePercentage = ((price-data.data.open)/data.data.open)*100;
-			buf[from].push({
+			tickers[from].buffer.push({
 				x: date,
 				y: price
 			})
 
-			el(from+'-price').innerHTML = numeral(parseFloat(price).toFixed(2)).format('0,0.00');
+			var digitCount = tickers[from].digits || 2;
+			var format = '0,0.'
+			for(var i=0;i<digitCount;i++){
+				format = format+"0";
+			}
+			el(from+'-price').innerHTML = numeral(parseFloat(price)).format(format);
 			el(from+'-percentage').innerHTML = changePercentage.toFixed(2)+" %";
 			if(changePercentage > 0){
 				el(from+"-percentage").classList.remove('red')
@@ -424,21 +397,28 @@
 	
 	var el = function(id){ return document.getElementById(id) };
 
-	var ctx = document.querySelector('canvas').getContext('2d');
-	var chart = new Chart(ctx, {
+	var chartConfig = {
 
 		type: 'line',
 		data: {
 			datasets: [{
 				data: [],
 				type: "line",
-				borderColor: 'rgb(49, 188, 147)', // line color
-				backgroundColor: 'rgba(49, 188, 147, 0.5)', // fill color
+				borderColor: 'rgb(60, 220, 173)', // line color
+				backgroundColor: 'rgba(60, 220, 173, 0.5)', // fill color
 				fill: true,                      // no fill
 				lineTension: 0
 			}]
 		},
 		options: {
+			layout: {
+	            padding: {
+	                left: 0,
+	                right: 0,
+	                top: 0,
+	                bottom: 0
+	            }
+	        },
 			scaleShowLabels : true,
 	    	responsive: true,
 	    	maintainAspectRatio: false,
@@ -489,73 +469,82 @@
 	                delay: 0,
 
 	                onRefresh: function(chart) { // callback on chart update interval
-	                	Array.prototype.push.apply(chart.data.datasets[0].data, buf[currentTicker]);
+	                	if(!currentTicker){
+	                		return;
+	                	}
+	                	Array.prototype.push.apply(chart.data.datasets[0].data, tickers[currentTicker].buffer);
 	                	chart.data.datasets[0].data.sort(function(a, b) {
 	                		return a.x - b.x;
 	                	});
-	                	buf[currentTicker] = [];
+	                	el('graph').classList.remove('hidden')
+
+	                	tickers[currentTicker].buffer = [];
 	                }
 	            }
 	        }
 	    }
-	});
+	}
+
+	var ctx = document.querySelector('canvas').getContext('2d');
+
+	var chart = new Chart(ctx, chartConfig);
+
+	function selectCurrency(ticker){
+		el('graph').classList.add('hidden')
+		chart.data.datasets[0].data = [];
+		chart.update();
+
+		currentTicker = ticker;
+		var boxes = document.querySelectorAll('[data-box]');
+		for(var i=0;i<boxes.length;i++){
+			boxes[i].classList.remove('selectedBox');
+		}
+		console.log(ticker);
+		document.querySelector('[data-box="'+ticker+'"]').classList.add('selectedBox');
+		apiRequest("https://min-api.cryptocompare.com/data/histominute?fsym="+ticker+"&tsym=USD&limit=20&e=HitBTC")
+		.then(function(res){
+			for(var j=0;j<res.Data.length;j++){
+				tickers[currentTicker].buffer.push({
+					x: moment(res.Data[j].time*1000),
+					y: res.Data[j].close
+				})
+			}
+			Array.prototype.push.apply(chart.data.datasets[0].data, tickers[currentTicker].buffer);
+			chart.data.datasets[0].data.sort(function(a, b) {
+				return a.x - b.x;
+			});
+			tickers[currentTicker].buffer = [];
+		})
+	}
 
 	window.onload = function(){
-		console.log(document.getElementById('twitter'));
-		document.getElementById('twitter').addEventListener('click', function(){
+
+		/*el('twitter').addEventListener('click', function(){
 			el('twitter').classList.remove('deselected');
 			el('discuss').classList.add('deselected');
 			el('disqus_thread').setAttribute('style','display:none');
 			el('twitter_box').setAttribute('style','');
 		}, true)
 
-		console.log(document.getElementById('discuss'));
-		document.getElementById('discuss').addEventListener('click', function(){
+		el('discuss').addEventListener('click', function(){
 			el('discuss').classList.remove('deselected')
 			el('twitter').classList.add('deselected')
 			el('disqus_thread').setAttribute('style','');
 			el('twitter_box').setAttribute('style','display:none');
-		}, true)
+		}, true)*/
 
-
-		var currentArr = [];
-		var historicalArr = [];
-		for(var i=0;i<tickers.length;i++){
-			currentArr.push(apiRequest("https://min-api.cryptocompare.com/data/price?fsym="+tickers[i].ticker+"&tsyms=USD&e=HitBTC"))
+		var boxes = document.querySelectorAll('[data-box]');
+		for(var i=0;i<boxes.length;i++){
+			boxes[i].addEventListener('click', function(event){
+				console.log(event.target);
+				selectCurrency(event.target.getAttribute('data-box'))
+			})
 		}
-		for(var i=0;i<tickers.length;i++){
-			historicalArr.push(apiRequest("https://min-api.cryptocompare.com/data/histominute?fsym="+tickers[i].ticker+"&tsym=USD&limit=20&e=HitBTC"))
-		}
-
-
-		Promise.all(currentArr)
-		.then(function(res){
-			for(var i=0;i<tickers.length;i++){
-				el(tickers[i].ticker+'-price').innerHTML = numeral(parseFloat(res[i].USD).toFixed(2)).format('0,0.00');
-			}
-			return Promise.all(historicalArr);
-		})
-		.then(function(res){
-			for(var i=0;i<tickers.length;i++){
-				for(var j=0;j<res[i].Data.length;j++){
-					buf[tickers[i].ticker].push({
-						x: moment(res[i].Data[j].time*1000),
-						y: res[i].Data[j].close
-					})
-
-				}
-			}
-
-			Array.prototype.push.apply(chart.data.datasets[0].data, buf[currentTicker]);
-			chart.data.datasets[0].data.sort(function(a, b) {
-				return a.x - b.x;
-			});
-			chart.update();
-
-			connection = new WebSocket('wss://api.hitbtc.com/api/2/ws');
-			connection.onopen = initializeSocket;
-			connection.onmessage = receiveMessage;
-		})
+		
+		selectCurrency('BTC')
+		connection = new WebSocket('wss://api.hitbtc.com/api/2/ws');
+		connection.onopen = initializeSocket;
+		connection.onmessage = receiveMessage;
 	}
 </script>
 </body>
