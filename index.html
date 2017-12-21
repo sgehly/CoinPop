@@ -1,130 +1,140 @@
 <html>
-	<head>
-		<title>CoinPop</title>
-		<link href="https://fonts.googleapis.com/css?family=Heebo:300,400,500,700,900" rel="stylesheet">
-		<meta charset="utf-8"/>
-		<style>
-			*{
-				-webkit-margin-before: 0em;
-				-webkit-margin-after: 0em;
-			}
-			body{
-				margin:0;
-				padding:0;
-				background:#141823;
-				color:white;
-				font-family:"Heebo";
-			}
-			iframe{
-				width:100% !important;
-				height:auto !important;
-				flex:2 !important;
-			}
-			.header{
-				font-weight:300;
-				padding-left:10px;
-				padding-top:2px;
-				padding-bottom:2px;
-				padding-right:10px;
-				font-size:14px;
-				overflow:hidden;
-			}
-			.green{
-				color:#27ae60;
-			}
-			.red{
-				color:#c0392b;
-			}
-			.flex{
-				display:flex;
-			}
-			.flex-50 > div{
-				flex:50%;
-			}
-			.flex-75 > div{
-				flex:75%;
-			}
-			.flex-25 > div{
-				flex:25%;
-			}
-			.flex-20 > div{
-				flex:20%;
-			}
-			.pad-all-small{
-				padding:5px;
-			}
-			.content{
-				margin:0 auto;
-				height:100vh;
-				overflow:none;
-				display:flex;
-				flex-direction: column;
-			}
-			.block{
-				width:100%;
-			}
-			.box{
-				border-radius:6px;
-				overflow:hidden;
-				display:flex;
-				flex-direction: column;
-			}
-			.bg-light{
-				background:#1a232f;
-			}
-			.bg-dark{
-				background:#161c28;
-			}
-			.flex-horizontal{
-				flex-direction:row;
-			}
-			.flex-vertical{
-				flex-direction:column;
-			}
-			.pad-all-custom{
-				padding-top:10px;
-				padding-left:5px;
-				padding-right:5px;
-			}
-			.pad-all-custom:first-child{
-				padding-left:0px !important;
-			}
-			.pad-all-custom:last-child{
-				padding-right:0px !important;
-			}
-			.flex-fillRest{
-				flex:2;
-			}
-			.flex-center{
-				align-items:center;
-				justify-content: center;
-			}
-			.price{
-				font-weight:400;
-				font-size:18px;
-			}
-			.faded{
-				opacity:0.5;
-				font-size:10px;
-				display:none;
-				float:right;
-			}
-			.pad-all-large{
-				padding:10px;
-			}
-		</style>
-	</head>
-	<body>
+<head>
+	<title>CoinPop</title>
+	<link href="https://fonts.googleapis.com/css?family=Heebo:300,400,500,700,900" rel="stylesheet">
+	<link href='https://raw.github.com/daneden/animate.css/master/animate.css' rel="stylesheet">
+	<meta charset="utf-8"/>
+	<style>
+	*{
+		-webkit-margin-before: 0em;
+		-webkit-margin-after: 0em;
+	}
+	body{
+		margin:0;
+		padding:0;
+		background:#1b1e28;
+		color:white;
+		font-family:"Heebo";
+	}
+	iframe{
+		width:100% !important;
+		flex:2 !important;
+	}
+	a:hover{
+		cursor:pointer;
+	}
+	.header{
+		font-weight:300;
+		padding-left:10px;
+		padding-top:5px;
+		padding-bottom:2px;
+		padding-right:10px;
+		font-size:16px;
+		overflow:hidden;
+	}
+	.green{
+		color:#27ae60;
+	}
+	.red{
+		color:#bc3131;
+	}
+	.flex{
+		display:flex;
+	}
+	.flex-50 > div{
+		flex:50%;
+	}
+	.flex-75 > div{
+		flex:75%;
+	}
+	.flex-25 > div{
+		flex:25%;
+	}
+	.flex-20 > div{
+		flex:20%;
+	}
+	.pad-all-small{
+		padding:5px;
+	}
+	.content{
+		margin:0 auto;
+		height:125vh;
+		overflow:none;
+		display:flex;
+		flex-direction: column;
+	}
+	a{
+		color:white;
+		text-decoration: none;
+	}
+	.block{
+		width:100%;
+	}
+	.box{
+		border-radius:6px;
+		overflow:hidden;
+		flex-direction: column;
+	}
+	.bg-light{
+		background:#202733;
+	}
+	.bg-dark{
+		background:#1c212c;
+	}
+	.flex-horizontal{
+		flex-direction:row;
+	}
+	.flex-vertical{
+		flex-direction:column;
+	}
+	.pad-all-custom{
+		padding-top:10px;
+		padding-left:5px;
+		padding-right:5px;
+	}
+	.pad-all-custom:first-child{
+		padding-left:0px !important;
+	}
+	.pad-all-custom:last-child{
+		padding-right:0px !important;
+	}
+	.flex-fillRest{
+		flex:2;
+	}
+	.flex-center{
+		align-items:center;
+		justify-content: center;
+	}
+	.price{
+		font-weight:400;
+		font-size:24px;
+	}
+	.deselected{
+		color:#45484f;
+	}
+	.pad-all-large{
+		padding:10px;
+	}
+	.bg-tab{
+		
+	}
+	.hidden{
+		opacity:0;
+	}
+</style>
+</head>
+<body>
 
-		<div class="content">
-			<div style="margin:20px" class="flex flex-vertical">
-			<div class="flex" style="flex:5%">
+	<div class="content">
+		<div style="margin:20px" class="flex flex-vertical">
+			<div class="flex" style="flex:5%;align-items:flex-start;">
+				<img src="coinpopnewlogo.svg" height="30px" style="padding-left:10px;">
 			</div>
-			<div class="flex flex-20" style="flex:10%">
+			<div class="flex flex-20" style="flex:10%;padding:5px;">
 				<div class="pad-all-small flex">
-					<div class="box bg-light block">
+					<div class="box flex bg-light block">
 						<h3 class="header bg-dark">
-							Bitcoin <span class="faded">(BTC)</span>
+							Bitcoin
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="BTC-price" class="price"></span>&nbsp;&nbsp;USD
@@ -134,9 +144,9 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box bg-light block">
+					<div class="box flex bg-light block">
 						<h3 class="header bg-dark">
-							Ethereum <span class="faded">(ETH)</span>
+							Ethereum
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="ETH-price" class="price"></span>&nbsp;&nbsp;USD
@@ -146,9 +156,9 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box bg-light block">
+					<div class="box flex bg-light block">
 						<h3 class="header bg-dark">
-							Litecoin <span class="faded">(LTC)</span>
+							Litecoin
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="LTC-price" class="price"></span>&nbsp;&nbsp;USD
@@ -158,9 +168,9 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box bg-light block">
+					<div class="box flex bg-light block">
 						<h3 class="header bg-dark">
-							Ripple <span class="faded">(XRP)</span>
+							Ripple
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="XRP-price" class="price"></span>&nbsp;&nbsp;USD
@@ -170,9 +180,9 @@
 					</div>
 				</div>
 				<div class="pad-all-small flex">
-					<div class="box bg-light block">
+					<div class="box flex bg-light block">
 						<h3 class="header bg-dark">
-							Bitcoin Cash <span class="faded">(BCH)</span>
+							Bitcoin Cash
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="BCH-price" class="price"></span>&nbsp;&nbsp;USD
@@ -184,25 +194,26 @@
 			</div>
 
 
-			<div class="flex" style="flex:85%">
+			<div class="flex" style="flex:85%;padding-left:5px;padding-right:5px;">
 				<div class="flex pad-all-small flex-vertical" style="flex:60%;">
-					<div class="box bg-light block" style="flex:60%">
-						<canvas id="graph"></canvas>
+					<div class="box bg-light block" style="flex:60%;position:relative;">
+						<canvas id="graph" class="hidden" style="margin:-10px; position:absolute;top:0;left:0;bottom:0;right:0;height:auto !important;"></canvas>
 					</div>
 					<div class="flex flex-horizontal" style="flex:40%">
 						<div class="pad-all-custom flex" style="flex:60%;">
-							<div class="box bg-light block">
-								<h3 class="header bg-dark">
-									Twitter Feed
+							<div class="box flex bg-light block">
+								<h3 class="header bg-dark flex deselected">
+									News Feed
 								</h3>
-								<a class="twitter-timeline block"  href="https://twitter.com/search?q=cryptocurrency%20OR%20bitcoin%20OR%20ethereum%20OR%20litecoin%20OR%20ripple&chrome=transparent noheader nofooter" data-widget-id="943248664046243840">Tweets about cryptocurrency OR bitcoin OR ethereum OR litecoin OR ripple</a>
-								<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+								<div style="flex:2;overflow-y:scroll;">
+									<a class="twitter-timeline" data-theme="dark" href="https://twitter.com/gocoinpop/lists/coin-news" data-id="1381293" data-chrome="nofooter noheader transparent">A Twitter List by gocoinpop</a>
+								</div>
 							</div>
 						</div>
 						<div class="pad-all-custom flex" style="flex:40%">
 							<div class="box bg-light block">
-								<h3 class="header bg-dark">
-									Twitter Feed
+								<h3 class="header bg-dark deselected">
+									Information
 								</h3>
 
 								
@@ -213,233 +224,339 @@
 				<div class="flex pad-all-small" style="flex:40%">
 					<div class="box bg-light block">
 						<h3 class="header bg-dark">
-							Discussion
+							<a class="" id="twitter">Twitter Feed</a>
+							&nbsp;&nbsp;
+							<a class="deselected" id="discuss">Discussion</a>
 						</h3>
-						<div id="disqus_thread" class="pad-all-large flex flex-fillRest"></div>
+						
+						<div id="disqus_thread" style="display:none" class="pad-all-large flex flex-fillRest"></div>
+
+						<div id="twitter_box">
+							<a class="twitter-timeline block" href="https://twitter.com/search?q=cryptocurrency%20OR%20bitcoin%20OR%20ethereum%20OR%20litecoin%20OR%20ripple&chrome=transparent noheader nofooter" data-widget-id="943248664046243840">Tweets about cryptocurrency OR bitcoin OR ethereum OR litecoin OR ripple</a>
+						</div>
+
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 						<script>
 						(function() { // DON'T EDIT BELOW THIS LINE
-						var d = document, s = d.createElement('script');
-						s.src = 'https://coinpop.disqus.com/embed.js';
-						s.setAttribute('data-timestamp', +new Date());
-						(d.head || d.body).appendChild(s);
+							var d = document, s = d.createElement('script');
+							s.src = 'https://coinpop.disqus.com/embed.js';
+							s.setAttribute('data-timestamp', +new Date());
+							(d.head || d.body).appendChild(s);
 						})();
-						</script>
-						<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-					</div>
+					</script>
+					<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 				</div>
 			</div>
-			</div>
 		</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
-		<script src="./ccc-streamer-utilities.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-		<script type="text/javascript" src="https://github.com/nagix/chartjs-plugin-streaming/releases/download/v1.1.0/chartjs-plugin-streaming.js"></script>
-		<script>
+	</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="https://js.pusher.com/4.2/pusher.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+<script type="text/javascript" src="https://github.com/nagix/chartjs-plugin-streaming/releases/download/v1.2.0/chartjs-plugin-streaming.min.js"></script>
+<script>
 
-			var currentPrice = {}
-			var currentTicker = 'BTC';
-			var exchange = "Coinbase";
-			var tickers = ['BTC','ETH','LTC','XRP','BCH']
-			var priceEx = ['CCCAGG', 'CCCAGG', 'CCCAGG', 'CCCAGG', 'CCCAGG']
-			var mode = [5,5,5,5,5]
-			var buf = {
+	setTimeout(function(){
+		el('graph').classList.remove('hidden');
+		el('graph').classList.add('animated');
+		el('graph').classList.add('fadeIn');
+	},1500)
+	//https://davidwalsh.name/convert-xml-json
+	function xmlToJson(xml) {
+	    
+	    // Create the return object
+	    var obj = {};
 
+	    if (xml.nodeType == 1) { // element
+	        // do attributes
+	        if (xml.attributes.length > 0) {
+	        obj["@attributes"] = {};
+	            for (var j = 0; j < xml.attributes.length; j++) {
+	                var attribute = xml.attributes.item(j);
+	                obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+	            }
+	        }
+	    } else if (xml.nodeType == 3) { // text
+	        obj = xml.nodeValue;
+	    }
+
+	    // do children
+	    if (xml.hasChildNodes()) {
+	        for(var i = 0; i < xml.childNodes.length; i++) {
+	            var item = xml.childNodes.item(i);
+	            var nodeName = item.nodeName;
+	            if (typeof(obj[nodeName]) == "undefined") {
+	                obj[nodeName] = xmlToJson(item);
+	            } else {
+	                if (typeof(obj[nodeName].push) == "undefined") {
+	                    var old = obj[nodeName];
+	                    obj[nodeName] = [];
+	                    obj[nodeName].push(old);
+	                }
+	                obj[nodeName].push(xmlToJson(item));
+	            }
+	        }
+	    }
+	    return obj;
+	};
+
+	function getNews(){
+		/*apiRequest("http://www.altcointoday.com/feed/", true)
+		.then(function(response){
+			var json = xmlToJson(response);
+			console.log(json);
+		})*/
+	}
+
+	getNews();
+	setInterval(getNews, 30*60*1000)
+
+
+	var currentPrice = {}
+	var currentTicker = 'BTC';
+
+	var tickers = [
+		{
+			ticker: 'BTC',
+		},
+		{
+			ticker: 'ETH',
+		},
+		{
+			ticker: 'LTC',
+		},
+		{
+			ticker: 'XRP',
+			channel: 'XRPUSDT'
+		},
+		{
+			ticker: 'BCH',
+		}
+	]
+
+	var buf = {};
+
+	function apiRequest(url, raw){
+		var request = new XMLHttpRequest();
+
+		return new Promise(function(res,rej){
+			request.open('GET', url, true);
+
+			request.onload = function() {
+				if (request.status >= 200 && request.status < 400) {
+					if(raw){
+						return res(request.responseText)
+					}
+					res(JSON.parse(request.responseText));
+				} else {
+					alert("HTTP Error");
+				}
 			};
 
-			function apiRequest(url, cb){
-				var request = new XMLHttpRequest();
+			request.onerror = function() {
+				alert("HTTP Error");
+			};
 
-				return new Promise(function(res,rej){
-					request.open('GET', url, true);
+			request.send();
+		})
 
-					request.onload = function() {
-					  if (request.status >= 200 && request.status < 400) {
-					    res(JSON.parse(request.responseText));
-					  } else {
-					    rej("HTTP Error");
-					  }
-					};
+	}
 
-					request.onerror = function() {
-					  rej("HTTP Error");
-					};
+	for(var i=0;i<tickers.length;i++){
+		buf[tickers[i].ticker] = [];
+	}
 
-					request.send();
-				})
-				
+	var connection;
+	
+	function initializeSocket(){
+		for(var i=0;i<tickers.length;i++){
+			connection.send(JSON.stringify({
+			  "method": "subscribeTicker",
+			  "params": {
+			    "symbol": (tickers[i].channel || tickers[i].ticker+"USD")
+			  },
+			  "id": (Math.random()%1000000)+10000
+			}))
+		}
+
+	}
+
+	var canReceive = true;
+	setInterval(function(){
+		canReceive = true;
+	},500)
+	function receiveMessage(data){
+		if(!canReceive){
+			return;
+		}
+		var data = JSON.parse(data.data);
+
+		if(data.channel == "ticker"){
+			canReceive = false;
+			var to = "USD";
+			var from = data.data.symbol.replace("USDT",'').replace("USD",'');
+			var price = data.data.ask;
+			var date = moment(data.data.timestamp);
+
+			var changePercentage = ((price-data.data.open)/data.data.open)*100;
+			buf[from].push({
+				x: date,
+				y: price
+			})
+
+			el(from+'-price').innerHTML = numeral(parseFloat(price).toFixed(2)).format('0,0.00');
+			el(from+'-percentage').innerHTML = changePercentage.toFixed(2)+" %";
+			if(changePercentage > 0){
+				el(from+"-percentage").classList.remove('red')
+				el(from+"-percentage").classList.add('green')
+			}else{
+				el(from+"-percentage").classList.remove('green')
+				el(from+"-percentage").classList.add('red')
 			}
 
+		}
+		
+	}
+	
+	var el = function(id){ return document.getElementById(id) };
+
+	var ctx = document.querySelector('canvas').getContext('2d');
+	var chart = new Chart(ctx, {
+
+		type: 'line',
+		data: {
+			datasets: [{
+				data: [],
+				type: "line",
+				borderColor: 'rgb(49, 188, 147)', // line color
+				backgroundColor: 'rgba(49, 188, 147, 0.5)', // fill color
+				fill: true,                      // no fill
+				lineTension: 0
+			}]
+		},
+		options: {
+			scaleShowLabels : true,
+	    	responsive: true,
+	    	maintainAspectRatio: false,
+	    	legend: {
+	    		display: false
+	    	},
+	    	tooltips: {
+	    		enabled: true
+	    	},
+	    	title: {
+	            text: '', // chart title
+	            display: false
+	        },
+	        scales: {
+	        	xAxes: [{
+	                type: 'realtime', // auto-scroll on X axis
+	                display: true
+	            }],
+	            yAxes: [{
+	            	position: 'right',
+	            	ticks: {
+		                userCallback: function(label, index, labels) {
+		                    var split = label.toString().split('.');
+		                    if(split[1] && split[1].length == 1) {
+		                       	return parseFloat(split[0]+'.'+split[1]+'0');
+		                    }else{
+		                    	return parseFloat(label);
+		                    }
+		                },
+		             }
+	            }]
+	        },
+	        tooltips: {
+	        	intersect: false
+	        },
+	        hover: {
+	        	mode: 'nearest',
+	        	intersect: false
+	        },
+	        elements: {
+	        	point: {
+	        		radius: 1
+	        	} 
+	        },
+	        plugins: {
+	        	streaming: {
+	                duration: 5*60*1000, // display data for the latest 300000ms (5 mins)
+	                delay: 0,
+
+	                onRefresh: function(chart) { // callback on chart update interval
+	                	Array.prototype.push.apply(chart.data.datasets[0].data, buf[currentTicker]);
+	                	chart.data.datasets[0].data.sort(function(a, b) {
+	                		return a.x - b.x;
+	                	});
+	                	buf[currentTicker] = [];
+	                }
+	            }
+	        }
+	    }
+	});
+
+	window.onload = function(){
+		console.log(document.getElementById('twitter'));
+		document.getElementById('twitter').addEventListener('click', function(){
+			el('twitter').classList.remove('deselected');
+			el('discuss').classList.add('deselected');
+			el('disqus_thread').setAttribute('style','display:none');
+			el('twitter_box').setAttribute('style','');
+		}, true)
+
+		console.log(document.getElementById('discuss'));
+		document.getElementById('discuss').addEventListener('click', function(){
+			el('discuss').classList.remove('deselected')
+			el('twitter').classList.add('deselected')
+			el('disqus_thread').setAttribute('style','');
+			el('twitter_box').setAttribute('style','display:none');
+		}, true)
+
+
+		var currentArr = [];
+		var historicalArr = [];
+		for(var i=0;i<tickers.length;i++){
+			currentArr.push(apiRequest("https://min-api.cryptocompare.com/data/price?fsym="+tickers[i].ticker+"&tsyms=USD&e=HitBTC"))
+		}
+		for(var i=0;i<tickers.length;i++){
+			historicalArr.push(apiRequest("https://min-api.cryptocompare.com/data/histominute?fsym="+tickers[i].ticker+"&tsym=USD&limit=20&e=HitBTC"))
+		}
+
+
+		Promise.all(currentArr)
+		.then(function(res){
 			for(var i=0;i<tickers.length;i++){
-				buf[tickers[i]] = [];
+				el(tickers[i].ticker+'-price').innerHTML = numeral(parseFloat(res[i].USD).toFixed(2)).format('0,0.00');
+			}
+			return Promise.all(historicalArr);
+		})
+		.then(function(res){
+			for(var i=0;i<tickers.length;i++){
+				for(var j=0;j<res[i].Data.length;j++){
+					buf[tickers[i].ticker].push({
+						x: moment(res[i].Data[j].time*1000),
+						y: res[i].Data[j].close
+					})
+
+				}
 			}
 
-			var socket = io.connect('https://streamer.cryptocompare.com/');
-
-			function initializeSocket(){
-				for(var i=0;i<tickers.length;i++){
-					socket.emit('SubAdd', { subs: [mode[i]+'~'+priceEx[i]+'~'+tickers[i]+'~USD'] } );
-				}
-				
-			}
-
-			socket.on("m", function(message) {
-				var messageType = message.substring(0, message.indexOf("~"));
-				var res = {};
-				if (messageType == CCC.STATIC.TYPE.CURRENTAGG) {
-					res = CCC.CURRENT.unpack(message);
-					dataUnpack(res);
-				}
+			Array.prototype.push.apply(chart.data.datasets[0].data, buf[currentTicker]);
+			chart.data.datasets[0].data.sort(function(a, b) {
+				return a.x - b.x;
 			});
+			chart.update();
 
-			var dataUnpack = function(data) {
-				var from = data['FROMSYMBOL'];
-				var to = data['TOSYMBOL'];
-				var fsym = CCC.STATIC.CURRENCY.getSymbol(from);
-				var tsym = CCC.STATIC.CURRENCY.getSymbol(to);
-				var pair = from + to;
-
-				if (!currentPrice.hasOwnProperty(pair)) {
-					currentPrice[pair] = {};
-				}
-
-				for (var key in data) {
-					currentPrice[pair][key] = data[key];
-				}
-
-				if (currentPrice[pair]['LASTTRADEID']) {
-					currentPrice[pair]['LASTTRADEID'] = parseInt(currentPrice[pair]['LASTTRADEID']).toFixed(0);
-				}
-				currentPrice[pair]['CHANGE24HOUR'] = CCC.convertValueToDisplay(tsym, (currentPrice[pair]['PRICE'] - currentPrice[pair]['OPEN24HOUR']));
-
-				var percentage = ((currentPrice[pair]['PRICE'] - currentPrice[pair]['OPEN24HOUR']) / currentPrice[pair]['OPEN24HOUR'] * 100).toFixed(2);
-
-				currentPrice[pair]['CHANGE24HOURPCTRAW'] =  percentage
-
-				if(percentage > 0){
-					percentage = '+ '+percentage;
-				}else{
-					percentage = '- '+Math.abs(percentage);
-				}
-				currentPrice[pair]['CHANGE24HOURPCT'] =  percentage+"%";
-				displayData(currentPrice[pair], from, tsym, fsym);
-			};
-			var el = function(id){ return document.getElementById(id) };
-			var displayData = function(current, from, tsym, fsym) {
-				var priceDirection = current.FLAGS;
-				for (var key in current) {
-					if(key == 'PRICE'){
-						buf[from].push({
-							x: Date.now(),
-							y: current[key]
-						})
-						el(from+"-price").innerHTML = CCC.convertValueToDisplay('', current[key]);
-					}
-
-					if (key == 'CHANGE24HOURPCT') {
-						el(from+"-percentage").innerHTML = current[key];
-					}
-					
-					if(key == 'CHANGE24HOURPCTRAW'){
-						if(current[key] > 0){
-							el(from+"-percentage").classList.remove('red')
-							el(from+"-percentage").classList.add('green')
-						}else{
-							el(from+"-percentage").classList.remove('green')
-							el(from+"-percentage").classList.add('red')
-						}
-					}
-				}
-
-				
-			};
-
-
-			var ctx = document.querySelector('canvas').getContext('2d');
-			var chart = new Chart(ctx, {
-			    type: 'line',
-			    data: {
-			        datasets: [{
-			            data: [],
-			            borderColor: 'rgb(71, 254, 194)', // line color
-			            backgroundColor: 'rgba(71, 254, 194, 0.5)', // fill color
-			            fill: true,                      // no fill
-			            lineTension: 0                    // straight line
-			        }]
-			    },
-			    options: {
-			    	legend: {
-			    	    display: false
-			    	},
-			    	tooltips: {
-			    	   	//enabled: false
-			    	},
-			        title: {
-			            text: '', // chart title
-			            display: false
-			        },
-			        scales: {
-			            xAxes: [{
-			                type: 'realtime' // auto-scroll on X axis
-			            }]
-			        },
-			        elements: { point: { radius: 0 } },
-			        plugins: {
-			            streaming: {
-			                duration: 10*60*1000, // display data for the latest 300000ms (5 mins)
-			                onRefresh: function(chart) { // callback on chart update interval
-			                	console.log("Update", buf)
-			                    Array.prototype.push.apply(chart.data.datasets[0].data, buf[currentTicker]);
-			                    chart.data.datasets[0].data.sort(function(a, b) {
-			                        return a.x - b.x;
-			                    });
-			                    chart.update(0);
-			                   	buf[currentTicker] = [];
-			                   	console.log(chart.data.datasets[0].data);
-			                }
-			            }
-			        }
-			    }
-			});
-
-			window.onload = function(){
-				var currentArr = [];
-				var historicalArr = []
-				for(var i=0;i<tickers.length;i++){
-					currentArr.push(apiRequest("https://min-api.cryptocompare.com/data/price?fsym="+tickers[i]+"&tsyms=USD&e="+priceEx[i]))
-				}
-				for(var i=0;i<tickers.length;i++){
-					historicalArr.push(apiRequest("https://min-api.cryptocompare.com/data/histominute?fsym="+tickers[i]+"&tsym=USD&limit=20&e="+priceEx[i]))
-				}
-				Promise.all(currentArr)
-				.then(function(res){
-					for(var i=0;i<tickers.length;i++){
-						document.getElementById(tickers[i]+'-price').innerHTML = res[i].USD
-					}
-					return Promise.all(historicalArr);
-				})
-				.then(function(res){
-					for(var i=0;i<tickers.length;i++){
-						for(var j=0;j<res[i].Data.length;j++){
-
-							buf[tickers[i]].push({
-								x: res[i].Data[j].time*1000,
-								y: res[i].Data[j].close
-							})
-
-						}
-					}
-
-					Array.prototype.push.apply(chart.data.datasets[0].data, buf[currentTicker]);
-					chart.data.datasets[0].data.sort(function(a, b) {
-					    return a.x - b.x;
-					});
-					console.log("Initial", buf[currentTicker]);
-					chart.update(0);
-					initializeSocket();
-				})
-			}
-		</script>
-	</body>
+			connection = new WebSocket('wss://api.hitbtc.com/api/2/ws');
+			connection.onopen = initializeSocket;
+			connection.onmessage = receiveMessage;
+		})
+	}
+</script>
+</body>
 </html>
