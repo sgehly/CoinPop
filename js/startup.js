@@ -1,5 +1,7 @@
 window.onload = function(){
 
+	dragula([document.getElementById('dragrow')]);
+
 	var boxes = document.querySelectorAll('[data-box]');
 	for(var i=0;i<boxes.length;i++){
 		boxes[i].addEventListener('click', function(event){

@@ -34,10 +34,14 @@ function selectCurrency(ticker){
 	currentTicker = ticker;
 	var boxes = document.querySelectorAll('[data-box]');
 	for(var i=0;i<boxes.length;i++){
+		boxes[i].querySelector('.header').classList.remove('bg-green');
 		boxes[i].classList.remove('selectedBox');
 	}
-	console.log(ticker);
-	document.querySelector('[data-box="'+ticker+'"]').classList.add('selectedBox');
+
+	var box = document.querySelector('[data-box="'+ticker+'"]');
+	box.querySelector('.header').classList.add('bg-green');
+	box.classList.add('selectedBox');
+
 	apiRequest("https://min-api.cryptocompare.com/data/histominute?fsym="+ticker+"&tsym=USD&limit=20&e=HitBTC")
 	.then(function(res){
 		for(var j=0;j<res.Data.length;j++){

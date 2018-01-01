@@ -1,6 +1,7 @@
 <html>
 <head>
-	<title>CoinPop</title>
+	<title>coinpop</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Heebo:300,400,500,700,900" rel="stylesheet">
 	<link href='https://raw.github.com/daneden/animate.css/master/animate.css' rel="stylesheet">
 	<link rel="icon" href="./favicon.ico" type="image/x-icon" />
@@ -13,11 +14,12 @@
 			<div class="flex" style="flex:5%;align-items:flex-start;">
 				<img src="coinpopnewlogo.svg" height="30px" style="padding-left:10px;">
 			</div>
-			<div class="flex flex-20" style="flex:10%;padding:5px;">
+			<div class="flex flex-20" style="flex:10%;padding:5px;padding-top:0px;" id="dragrow">
 				<div class="pad-all-small flex">
 					<div class="box flex bg-light block" data-box="BTC">
 						<h3 class="header bg-dark">
 							Bitcoin
+							<span class="right deselected dragger">≡</span>
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="BTC-price" class="price"></span>&nbsp;&nbsp;USD
@@ -30,6 +32,7 @@
 					<div class="box flex bg-light block" data-box="ETH">
 						<h3 class="header bg-dark">
 							Ethereum
+							<span class="right deselected dragger">≡</span>
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="ETH-price" class="price"></span>&nbsp;&nbsp;USD
@@ -42,6 +45,7 @@
 					<div class="box flex bg-light block" data-box="LTC">
 						<h3 class="header bg-dark">
 							Litecoin
+							<span class="right deselected dragger">≡</span>
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="LTC-price" class="price"></span>&nbsp;&nbsp;USD
@@ -54,6 +58,7 @@
 					<div class="box flex bg-light block" data-box="XRP">
 						<h3 class="header bg-dark">
 							Ripple
+							<span class="right deselected dragger">≡</span>
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="XRP-price" class="price"></span>&nbsp;&nbsp;USD
@@ -66,6 +71,7 @@
 					<div class="box flex bg-light block" data-box="BCH">
 						<h3 class="header bg-dark">
 							Bitcoin Cash
+							<span class="right deselected dragger">≡</span>
 						</h3>
 						<p class="pad-all-small flex flex-fillRest flex-center">
 							<span id="BCH-price" class="price"></span>&nbsp;&nbsp;USD
@@ -83,7 +89,7 @@
 						<canvas id="graph" class="hidden" style="position:absolute;left:0;right:0;height:auto !important;"></canvas>
 					</div>
 					<div class="flex flex-horizontal" style="flex:50%">
-						<div class="pad-all-custom flex" style="flex:60%;">
+						<div class="pad-all-custom flex" style="flex:100%;">
 							<div class="box flex bg-light block">
 								<h3 class="header bg-dark flex deselected">
 									Discussion
@@ -93,27 +99,19 @@
 								</div>
 							</div>
 						</div>
-						<div class="pad-all-custom flex" style="flex:40%">
-							<div class="box bg-light block">
-								<h3 class="header bg-dark deselected">
-									Fellow Visitors
-								</h3>
-								<script type="text/javascript" src="//ra.revolvermaps.com/0/0/8.js?i=096iugbe09b&m=0c&c=00fff6&cr1=ff0000&f=arial&l=33&cw=1f2530&cb=31bc93" async="async"></script>
-							</div>
-						</div>
 					</div>
 				</div>
 				<div class="flex pad-all-small" style="flex:40%">
-					<div class="box bg-light block">
+					<div class="box bg-light block flex">
 						<h3 class="header bg-dark">
-							<a class="deselected" id="twitter">Twitter Feed</a>
+							<span class="deselected">Twitter Feed</span>
 						</h3>
 
-						<div id="twitter_box" class="flex">
-							<a class="twitter-timeline block flex-fillRest" href="https://twitter.com/gocoinpop/lists/coin-influencers&chrome=transparent noheader nofooter" data-chrome="nofooter noheader transparent" data-widget-id="943248664046243840"></a>
+						<div id="twitter_box" class="flex flex-fillRest">
+							<a class="twitter-timeline block flex-fillRest" data-theme="dark" data-chrome="nofooter noheader transparent" href="https://twitter.com/gocoinpop/lists/coin-influencers?ref_src=twsrc%5Etfw"></a>
 						</div>
-
 						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 
 						<script>
 						(function() { // DON'T EDIT BELOW THIS LINE
@@ -128,18 +126,20 @@
 			</div>
 		</div>
 		<div class="flex pad-all-large">
-			<a class="deselected" onclick="alert('Coinpop is a new dashboard dedicated to letting you be the first to trade on the market by alerting you on prices, news and social engagements. If you have any suggestions or feedback, shoot an email over to coinpopco@gmail.com using the Contact link below.');">About</a>
-			&nbsp;&nbsp;
+			<a class="deselected" onclick="swal('Coinpop is a new dashboard dedicated to letting you be the first to trade on the market by alerting you on prices, news and social engagements. If you have any suggestions or feedback, shoot an email over to coinpopco@gmail.com using the Contact link below.');">About</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
 			<a class="deselected" target="_blank" href="https://twitter.com/gocoinpop">Twitter</a>
-			&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
 			<a class="deselected" target="_blank" href="mailto:coinpopco@gmail.com">Contact</a>
-			&nbsp;&nbsp;
-			<a class="deselected" target="_blank" href="https://github.com/sgehly/coinpop">GitHub <span class="red"><3</span></a>
-			&nbsp;&nbsp;
-			<a class="deselected" onclick="alert('All donations are welcomed and very much appreciated:\n\n[BTC : 1NuL81xuDEkNqKQ9xvde8rDe6SxoVzha86]\n[LTC : LKT1Sxi1Bm3vpaaL75HrETK8rJA4SBCqgC]\n[ETH: 0x69ef1B11f0172148421C64457b5F478d243ffF15]\n\n-Brandon')">Donate</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="deselected" target="_blank" href="https://github.com/sgehly/coinpop">GitHub</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="green" onclick="swal('All donations are welcomed and very much appreciated. All donations will go towards advancing coinpop and adding more unique features to make it better for our users.:\n\nBTC: 1NuL81xuDEkNqKQ9xvde8rDe6SxoVzha86\nLTC: LKT1Sxi1Bm3vpaaL75HrETK8rJA4SBCqgC\nETH: 0x69ef1B11f0172148421C64457b5F478d243ffF15\n\n-Brandon')">Donate</a>
 		</div>
 	</div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>

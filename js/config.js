@@ -63,7 +63,10 @@ var chartConfig = {
             	ticks: {
 	                userCallback: function(label, index, labels) {
 	                    var split = label.toString().split('.');
-	                    if(split[1] && split[1].length == 1) {
+                        if(!split[1]){
+                            return split[0];
+                        }
+	                    else if(split[1] && split[1].length == 1) {
 	                       	return parseFloat(split[0]+'.'+split[1]+'0').toFixed(2);
 	                    }else{
 	                    	return parseFloat(label).toFixed(2);
